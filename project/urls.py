@@ -19,7 +19,6 @@ from django.urls import path, include
 from taller import views
 
 urlpatterns = [
-    path('', views.index, name="taller:index"),
-    path('polls/', include('taller.urls')),
+    path('', include('taller.urls')),
     path('admin/', admin.site.urls),
 ]

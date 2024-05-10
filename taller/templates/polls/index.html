@@ -1,12 +1,28 @@
 {% extends "frontend.html" %}
 {% block content %}
-  {% if latest_question_list %}
-      <ul>
-      {% for question in latest_question_list %}
-          <li><a href="{% url 'taller:detail' question.id %}">{{ question.question_text }}</a></li>
-      {% endfor %}
-      </ul>
-  {% else %}
-      <p>No polls are available.</p>
-  {% endif %}
+
+    <div class="container-fluid">
+        
+        <div class="card">
+        <div class="card-header">
+            Resumen de Estado
+        </div>
+        <div class="card-body">
+            {% if latest_question_list %}
+                <ul>
+                {% for registro in registro_list %}
+                    <li><a href="{% url 'taller:detail' question.id %}">{{ question.question_text }}</a></li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No polls are available.</p>
+            {% endif %}  
+        </div>
+        </div>
+        
+    </div>
+
+  
 {% endblock %}
+
+

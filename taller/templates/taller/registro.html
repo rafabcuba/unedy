@@ -1,0 +1,63 @@
+{% extends "frontend.html" %}
+{% block title %}Registro de trabajos{% endblock %}
+{% load static %}
+{% block content %}
+
+    <div class="container-fluid mt-3">
+        
+        <div class="card">
+        <div class="card-header">
+            Resumen de Estado
+        </div>
+        <div class="card-body">
+            {% if registro_list %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-sm table-bordered" id="registro-report">
+                        <thead class="table-primary">
+                            <th>Equipo</th>
+                            <th>Fecha</th>
+                            <th>Problema Reportado</th>
+                        </thead>
+                        {% for registro in registro_list %}
+                            <tr>
+                                <td>{{ registro.equipo.marca }}</td>
+                                <td>{{ registro.fecha }}</td>
+                                <td>{{ registro.problema_reportado }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% else %}
+                <p>No existen registros</p>
+            {% endif %}
+            
+            
+        </div>
+        </div>
+        
+    </div>
+
+    <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'datatables/datatables.min.css' %}" type="text/css">
+    <script src="{% static 'datatables/datatables.min.js' %}"></script>
+
+    <script>
+    $(document).ready( function () {
+        var table = $('#registro-report').DataTable( {
+        layout: {
+            topStart: 'buttons'
+        },
+        buttons: true,
+        language: {
+            url: "{% static 'datatables/es-MX.json' %}"
+        },  
+        buttons: ['copy', 'excel', 'pdf']
+        } 
+    
+    );
+    
+    } );
+    </script>
+  
+{% endblock %}
+
