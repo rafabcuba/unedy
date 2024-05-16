@@ -1,0 +1,82 @@
+{% load static %}
+<!-- Barra de navegación -->
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/icon.png' %}" width="auto" height="30" alt="Indi"> UNEDY
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/"> <i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-file-pen"></i> Operaciones
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'taller:create-registro' %}"><i class="fa fa-file-pen"></i> Registrar equipo</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-file-lines" aria-hidden="true"></i> Reportes
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'taller:registro' %}"><i class="fa-solid fa-pencil-alt"></i> Recepciones</a></li>
+                <li><a class="dropdown-item" href=""><i class="fa-solid fa-file-alt"></i> reporte</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href=""><i class="fa-solid fa-file-pdf"></i> reporte por fecha</a></li>
+                <li><a class="dropdown-item" href=""><i class="fa-solid fa-file-pdf"></i> reporte por cliente</a></li>
+                <li><a class="dropdown-item" href=""><i class="fa-solid fa-file-pdf"></i> reporte por técnico</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href=""><i class="fa-solid fa-chart-pie"></i> Gráficas por fecha</a></li>
+                <li><a class="dropdown-item" href=""><i class="fa-solid fa-chart-pie"></i> Gráficas por cliente</a></li>
+                <li><a class="dropdown-item" href=""><i class="fa-solid fa-chart-pie"></i> Gráficas por fecha</a></li>
+            </ul>
+            </li>
+
+            {% if user.is_superuser %}
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">Administración</a>
+            </li>
+            {% endif %}
+
+
+            <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-shield-halved"></i> Seguridad
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"><i class="fa fa-key" aria-hidden="true"></i> Cambiar Contraseña</a></li>
+                </ul>
+            </li> -->
+        </ul>
+
+
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex align-items-center">
+            <li class="nav-item mx-2 mx-lg-1">
+            <form method="post" action="{% url 'security:logout' %}">
+                {% csrf_token %}
+                <button type="submit"><i class="fa fa-sign-out"></i> Salir</button>
+            </form>
+            </li>
+            <li class="nav-item mx-2 mx-lg-1">
+            <span class="navbar-text">
+                <i class="fa-regular fa-user"></i> {{ user.get_username }}
+            </span>
+            </li>
+        </ul>
+        <!-- Right links -->
+        
+        </div>
+    </div>
+  </nav>
+  
+<!-- Fin de Barra de navegación -->

@@ -1,0 +1,13 @@
+
+{% extends "frontend.html" %}
+{% block title %}Prioridades{% endblock %}
+{% block content %}
+
+<h1>Listado de prioridades</h1>
+<ul>
+    {% for prioridad in prioridad_list %}
+        <li>{{ prioridad.nombre }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

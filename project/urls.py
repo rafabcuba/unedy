@@ -21,4 +21,5 @@ from taller import views
 urlpatterns = [
     path('', include('taller.urls')),
     path('admin/', admin.site.urls),
+    path('', include("security.urls")),
 ]

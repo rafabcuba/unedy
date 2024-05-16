@@ -13,10 +13,17 @@ urlpatterns = [
     # # ex: /polls/5/vote/
     # path("polls/<int:question_id>/vote/", views.vote, name="vote"),
     
-    path("", views.IndexView.as_view(), name="index"),
-    path("polls/<int:pk>/", views.DetailView.as_view(), name="detail"),
-    path("polls/<int:pk>/results/", views.ResultsView.as_view(), name="results"),
-    path("polls/<int:question_id>/vote/", views.vote, name="vote"),
     
+    # path("polls/<int:pk>/", views.DetailView.as_view(), name="detail"),
+    # path("polls/<int:pk>/results/", views.ResultsView.as_view(), name="results"),
+    # path("polls/<int:question_id>/vote/", views.vote, name="vote"),
+    
+    path("", views.IndexView.as_view(), name="index"),
     path("taller/registro", views.RegistroIndexView.as_view(), name="registro"),
+    
+    # path('taller/prioridades/', views.prioridad_list_view, name='prioridades-list'),
+    path('taller/prioridades/', views.PrioridadListView.as_view(), name='prioridades-list'),
+    path('taller/crear-prioridad/', views.create_prioridad_view, name='create-prioridad'),
+    
+    path('taller/crear-registro/', views.create_registro_view, name='create-registro'),
 ]

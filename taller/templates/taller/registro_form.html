@@ -1,0 +1,34 @@
+{% extends "frontend.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="w-50">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="text-center">Create a New Task</h2>
+      </div>
+      <div class="card-body">
+        <form method="post" action="{% if registro.pk %}{% url 'taller:registro-update' registro.pk %}
+                                    {% else %}{% url 'taller:registro-create' %}{% endif %}">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="mb-3">
+              <label for="{{ field.id_for_label }}" class="formlabel">{{ field.label }}</label>
+              {% if field.errors %}
+                <div class="alert alert-danger">
+                  {{ field.errors }}
+                </div>
+              {% endif %}
+              {{ field|add_class:"form-control" }}
+          </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary w-100">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
