@@ -19,6 +19,7 @@
                 <i class="fa-solid fa-file-pen"></i> Operaciones
                 </a>
                 <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'taller:create-equipo' %}"><i class="fa fa-file-pen"></i> Agregar equipo</a></li>
                     <li><a class="dropdown-item" href="{% url 'taller:create-registro' %}"><i class="fa fa-file-pen"></i> Registrar equipo</a></li>
                 </ul>
             </li>
@@ -35,10 +36,10 @@
                 <li><a class="dropdown-item" href="{% url 'taller:reporte-x-prioridad' reporte='registro' %}"><i class="fa-solid fa-file-pdf"></i> Recepciones por prioridad</a></li>
                 <li><a class="dropdown-item" href="{% url 'taller:reporte-x-especialista' reporte='registro' %}"><i class="fa-solid fa-file-pdf"></i> Recepciones por especialista</a></li>
                 <li><a class="dropdown-item" href="{% url 'taller:reporte-x-estado' reporte='registro' %}"><i class="fa-solid fa-file-pdf"></i> Recepciones por estado</a></li>
-                <li><hr class="dropdown-divider"></li>
+                <!-- <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href=""><i class="fa-solid fa-chart-pie"></i> Gráficas por fecha</a></li>
                 <li><a class="dropdown-item" href=""><i class="fa-solid fa-chart-pie"></i> Gráficas por cliente</a></li>
-                <li><a class="dropdown-item" href=""><i class="fa-solid fa-chart-pie"></i> Gráficas por fecha</a></li>
+                <li><a class="dropdown-item" href=""><i class="fa-solid fa-chart-pie"></i> Gráficas por fecha</a></li> -->
             </ul>
             </li>
 

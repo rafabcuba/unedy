@@ -1,6 +1,6 @@
 Tareas por hacer
 
-[ ] forzar autenticación para todo el site execpto las funciones de autenticación
+[x] forzar autenticación para todo el site execpto las funciones de autenticación
 [x] hacer ejemplo de formulario
 
 1. definir el modelo models.py
@@ -12,7 +12,9 @@ Tareas por hacer
 
 
 [x] hacer ejemplo de reporte con datatables
-[ ] hacer ejemplo de reporte gráfico
+[x] hacer ejemplo de reporte gráfico
 [x] poblar la bd para pruebas
-[ ] configurar Dashboard
+[x] configurar Dashboard
+
+[ ] Realizar acciones del proceso 
 

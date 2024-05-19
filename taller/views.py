@@ -9,8 +9,8 @@ from calendar import month_name
 import locale
 from django.contrib.auth.decorators import login_required
 
-from .models import Choice, Question, Registro, Prioridad, Entidad, Especialista
-from .forms import CreateRegistroForm, CreatePrioridadForm
+from .models import Choice, Question, Registro, Prioridad, Entidad, Especialista, Equipo
+from .forms import CreateRegistroForm, CreatePrioridadForm, CreateEquipoForm
 
 # Create your views here.
 
@@ -132,6 +132,10 @@ class PrioridadListView(generic.ListView):
     model = Prioridad
     template_name = "taller/prioridades_list.html"
 
+class EquipoListView(generic.ListView):
+    model = Equipo
+    template_name = "taller/equipos_list.html"
+
 @login_required(login_url="/login/")
 def create_prioridad_view(request):
     if request.method == 'POST':
@@ -144,6 +148,19 @@ def create_prioridad_view(request):
         form = CreatePrioridadForm()
     context = {'form': form}
     return render(request, 'taller/create_prioridad.html', context)
+
+@login_required(login_url="/login/")
+def create_equipo_view(request):
+    if request.method == 'POST':
+        form = CreateEquipoForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            return HttpResponseRedirect(reverse('taller:equipos-list'))
+    else:
+        form = CreateEquipoForm()
+    context = {'form': form}
+    return render(request, 'taller/create_equipo.html', context)
 
 @login_required(login_url="/login/")
 def create_registro_view(request):

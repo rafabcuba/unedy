@@ -26,6 +26,9 @@ urlpatterns = [
     path('taller/prioridades/', views.PrioridadListView.as_view(), name='prioridades-list'),
     path('taller/crear-prioridad/', views.create_prioridad_view, name='create-prioridad'),
     
+    path('taller/equipos/', views.EquipoListView.as_view(), name='equipos-list'),
+    path('taller/crear-equipo/', views.create_equipo_view, name='create-equipo'),
+    
     path('taller/crear-registro/', views.create_registro_view, name='create-registro'),
     
     # asistentes para reportes

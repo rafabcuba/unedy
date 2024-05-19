@@ -1,5 +1,8 @@
 from django import forms
-from .models import Registro, Prioridad
+from .models import Registro, Prioridad, Equipo
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class CreateRegistroForm(forms.ModelForm):
   class Meta:
@@ -12,8 +15,17 @@ class CreateRegistroForm(forms.ModelForm):
               'problema_reportado',
               'prioridad'
               ]
+    
+    widgets = {
+            'fecha_entrada': DateInput(),
+            }
   
 class CreatePrioridadForm(forms.ModelForm):
   class Meta:
       model = Prioridad
-      fields = ['nombre']
+      fields = '__all__'
+      
+class CreateEquipoForm(forms.ModelForm):
+  class Meta:
+      model = Equipo
+      fields = '__all__'

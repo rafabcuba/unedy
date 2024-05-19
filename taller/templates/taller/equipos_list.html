@@ -1,0 +1,13 @@
+
+{% extends "frontend.html" %}
+{% block title %}Prioridades{% endblock %}
+{% block content %}
+
+<h1>Listado de equipos</h1>
+<ul>
+    {% for equipo in equipo_list %}
+        <li>{{ equipo.nombre }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

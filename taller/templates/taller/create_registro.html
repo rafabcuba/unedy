@@ -1,13 +1,60 @@
-
 {% extends "frontend.html" %}
+{% load taller_extras %}
 {% block title %}Registrar equipo{% endblock %}
 {% block content %}
 
-<h1>Registrar equipo</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Save</button>
-</form>
+<div class="container-fluid mt-3">
+  
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+
+      <!-- Tarjeta de formulario -->
+      <div class="card">
+        <div class="card-header">
+          Registrar equipo
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              {{ form.equipo.label_tag }}
+              {{ form.equipo|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.nombre_responsable.label_tag }}
+              {{ form.nombre_responsable|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.telefono_responsable.label_tag }}
+              {{ form.telefono_responsable|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.fecha_entrada.label_tag }}
+              {{ form.fecha_entrada|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.entidad.label_tag }}
+              {{ form.entidad|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.problema_reportado.label_tag }}
+              {{ form.problema_reportado|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.prioridad.label_tag }}
+              {{ form.prioridad|add_class:"form-control" }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-2 float-end"><i class="fa fa-check"></i> Ok</button>
+          </form>
+        </div>
+      </div>
+      <!-- Fin de tarjeta de formulario -->
+
+
+    </div>
+  </div>
+</div>
 
 {% endblock %}
+

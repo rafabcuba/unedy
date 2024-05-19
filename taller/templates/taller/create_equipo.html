@@ -1,0 +1,50 @@
+
+{% extends "frontend.html" %}
+{% load taller_extras %}
+{% block title %}Crear equipo{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+
+      <!-- Tarjeta de formulario -->
+      <div class="card">
+        <div class="card-header">
+          Crear equipo
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              {{ form.nombre.label_tag }}
+              {{ form.nombre|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.marca.label_tag }}
+              {{ form.marca|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.modelo.label_tag }}
+              {{ form.modelo|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.tipo.label_tag }}
+              {{ form.tipo|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              {{ form.inventario.label_tag }}
+              {{ form.inventario|add_class:"form-control" }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-2 float-end"><i class="fa fa-check"></i> Ok</button>
+          </form>
+        </div>
+      </div>
+      <!-- Fin de tarjeta de formulario -->
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
