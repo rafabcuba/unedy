@@ -1,0 +1,34 @@
+
+{% extends "frontend.html" %}
+{% load taller_extras %}
+{% block title %}Asigna trabajo{% endblock %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+
+      <!-- Tarjeta de formulario -->
+      <div class="card">
+        <div class="card-header">
+          Asignar trabajo
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              {{ form.especialista.label_tag }}
+              {{ form.especialista|add_class:"form-control" }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-2 float-end"><i class="fa fa-check"></i> Ok</button>
+          </form>
+        </div>
+      </div>
+      <!-- Fin de tarjeta de formulario -->
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

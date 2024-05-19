@@ -10,7 +10,7 @@ import locale
 from django.contrib.auth.decorators import login_required
 
 from .models import Choice, Question, Registro, Prioridad, Entidad, Especialista, Equipo
-from .forms import CreateRegistroForm, CreatePrioridadForm, CreateEquipoForm
+from .forms import *
 
 # Create your views here.
 
@@ -176,6 +176,70 @@ def create_registro_view(request):
     return render(request, 'taller/create_registro.html', context)
 
 @login_required(login_url="/login/")
+def asignar_trabajo_view(request, id):
+    registro = Registro.objects.get(id=id)
+    if request.method == 'POST':
+        form = AsignaTrabajoForm(request.POST, instance=registro)
+        if form.is_valid():
+            form.save()
+            registro.estado = 'ASIGNADO'
+            registro.save(update_fields=['estado'])
+            return HttpResponseRedirect(reverse('taller:registro-asignados'))
+    else:
+        form = AsignaTrabajoForm(instance=registro)
+        
+    context = {'form': form}
+    return render(request, 'taller/asigna_trabajo.html', context)
+
+@login_required(login_url="/login/")
+def evaluar_trabajo_view(request, id):
+    registro = Registro.objects.get(id=id)
+    if request.method == 'POST':
+        form = EvaluaTrabajoForm(request.POST, instance=registro)
+        if form.is_valid():
+            form.save()
+            registro.estado = 'EN_PROCESO'
+            registro.save(update_fields=['estado'])
+            return HttpResponseRedirect(reverse('taller:registro-en-proceso'))
+    else:
+        form = EvaluaTrabajoForm(instance=registro)
+        
+    context = {'form': form}
+    return render(request, 'taller/evaluar_trabajo.html', context)
+
+@login_required(login_url="/login/")
+def finalizar_trabajo_view(request, id):
+    registro = Registro.objects.get(id=id)
+    if request.method == 'POST':
+        form = FinalizarTrabajoForm(request.POST, instance=registro)
+        if form.is_valid():
+            form.save()
+            registro.estado = 'FINALIZADO'
+            registro.save(update_fields=['estado'])
+            return HttpResponseRedirect(reverse('taller:registro-finalizados'))
+    else:
+        form = FinalizarTrabajoForm(instance=registro)
+        
+    context = {'form': form}
+    return render(request, 'taller/finalizar_trabajo.html', context)
+
+@login_required(login_url="/login/")
+def verificar_trabajo_view(request, id):
+    registro = Registro.objects.get(id=id)
+    if request.method == 'POST':
+        form = VerificarTrabajoForm(request.POST, instance=registro)
+        if form.is_valid():
+            form.save()
+            registro.verificado = True
+            registro.save(update_fields=['verificado'])
+            return HttpResponseRedirect(reverse('taller:registro-finalizados'))
+    else:
+        form = VerificarTrabajoForm(instance=registro)
+        
+    context = {'form': form}
+    return render(request, 'taller/verificar_trabajo.html', context)
+
+@login_required(login_url="/login/")
 def date_selector(request, reporte=None):
     if request.method == 'POST':
         fecha_inicial=request.POST['fecha_inicial']
@@ -273,6 +337,50 @@ def estado_selector(request, reporte=None):
     ]
     context = {'estado_list': estado_list,}
     return render(request, 'wizards/estado_selector.html', context)
+
+def registro_recepcionados(request):
+    estado_seleccionado = 'Recepcionado'
+    estado_id = 'RECEPCIONADO'
+    title = f'Registro de recepciones por estado ({estado_seleccionado})'
+    registro_list = Registro.objects.filter(estado=estado_id)
+    context = {
+        'title': title,
+        'registro_list': registro_list,
+        }
+    return render(request, 'taller/registro.html', context)
+
+def registro_asignados(request):
+    estado_seleccionado = 'Asignado'
+    estado_id = 'ASIGNADO'
+    title = f'Registro de recepciones por estado ({estado_seleccionado})'
+    registro_list = Registro.objects.filter(estado=estado_id)
+    context = {
+        'title': title,
+        'registro_list': registro_list,
+        }
+    return render(request, 'taller/registro.html', context)
+
+def registro_en_proceso(request):
+    estado_seleccionado = 'En proceso'
+    estado_id = 'EN_PROCESO'
+    title = f'Registro de recepciones por estado ({estado_seleccionado})'
+    registro_list = Registro.objects.filter(estado=estado_id)
+    context = {
+        'title': title,
+        'registro_list': registro_list,
+        }
+    return render(request, 'taller/registro.html', context)
+
+def registro_finalizados(request):
+    estado_seleccionado = 'Finalizado'
+    estado_id = 'FINALIZADO'
+    title = f'Registro de recepciones por estado ({estado_seleccionado})'
+    registro_list = Registro.objects.filter(estado=estado_id)
+    context = {
+        'title': title,
+        'registro_list': registro_list,
+        }
+    return render(request, 'taller/registro.html', context)
 
 @login_required(login_url="/login/")
 def grafica_detalle_x_entidad(request):

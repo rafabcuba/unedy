@@ -1,13 +1,67 @@
 
 {% extends "frontend.html" %}
-{% block title %}Prioridades{% endblock %}
+{% block title %}Equipos{% endblock %}
+{% load static %}
 {% block content %}
 
-<h1>Listado de equipos</h1>
-<ul>
-    {% for equipo in equipo_list %}
-        <li>{{ equipo.nombre }}</li>
-    {% endfor %}
-</ul>
+<div class="container-fluid mt-3">
+        
+    <div class="card">
+    <div class="card-header">
+        Listado de equipos
+    </div>
+    <div class="card-body">
+        {% if equipo_list %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-sm table-bordered" id="equipo-report">
+                    <thead class="table-primary">
+                        <th>Nombre</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Tipo</th>
+                        <th>Inventario</th>
+                    </thead>
+                    {% for equipo in equipo_list %}
+                        <tr>
+                            <td>{{ equipo.nombre }}</td>
+                            <td>{{ equipo.marca }}</td>
+                            <td>{{ equipo.modelo }}</td>
+                            <td>{{ equipo.tipo.nombre }}</td>
+                            <td>{{ equipo.inventario }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% else %}
+            <p>No existen equipos</p>
+        {% endif %}
+        
+        
+    </div>
+    </div>
+    
+</div>
+
+<script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'datatables/datatables.min.css' %}" type="text/css">
+<script src="{% static 'datatables/datatables.min.js' %}"></script>
+
+<script>
+$(document).ready( function () {
+    var table = $('#equipo-report').DataTable( {
+    layout: {
+        topStart: 'buttons'
+    },
+    buttons: true,
+    language: {
+        url: "{% static 'datatables/es-MX.json' %}"
+    },  
+    buttons: ['copy', 'excel', 'pdf']
+    } 
+
+);
+
+} );
+</script>
 
 {% endblock %}

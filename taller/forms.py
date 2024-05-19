@@ -19,6 +19,32 @@ class CreateRegistroForm(forms.ModelForm):
     widgets = {
             'fecha_entrada': DateInput(),
             }
+
+class AsignaTrabajoForm(forms.ModelForm):
+  class Meta:
+    model = Registro
+    fields = ['especialista']
+
+class EvaluaTrabajoForm(forms.ModelForm):
+  class Meta:
+    model = Registro
+    fields = ['problema_real','tipo_de_problema']
+    
+class FinalizarTrabajoForm(forms.ModelForm):
+  class Meta:
+    model = Registro
+    fields = ['solucionado','observaciones','fecha_salida']
+    widgets = {
+            'fecha_salida': DateInput(),
+            }
+    
+class VerificarTrabajoForm(forms.ModelForm):
+  class Meta:
+    model = Registro
+    fields = ['verificacion','fecha_verificacion']
+    widgets = {
+            'fecha_verificacion': DateInput(),
+            }
   
 class CreatePrioridadForm(forms.ModelForm):
   class Meta:

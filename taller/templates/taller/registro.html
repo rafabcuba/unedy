@@ -20,6 +20,7 @@
                             <th>Problema Reportado</th>
                             <th>Prioridad</th>
                             <th>Estado</th>
+                            <th class="notexport">Acción</th>
                         </thead>
                         {% for registro in registro_list %}
                             <tr>
@@ -29,6 +30,28 @@
                                 <td>{{ registro.problema_reportado }}</td>
                                 <td>{{ registro.prioridad.nombre }}</td>
                                 <td>{{ registro.estado }}</td>
+                                <td>
+                                    {% if registro.estado == 'RECEPCIONADO' %}
+                                    <a href="{% url 'taller:asignar-trabajo' id=registro.id %}" 
+                                    class="btn btn-primary btn-sm text-nowrap" 
+                                    role="button"><i class="fa fa-hand-pointer"></i> Asignar</a>
+                                    {% endif %}
+                                    {% if registro.estado == 'ASIGNADO' %}
+                                    <a href="{% url 'taller:evaluar-trabajo' id=registro.id %}" 
+                                    class="btn btn-info btn-sm text-nowrap" 
+                                    role="button"><i class="fa fa-glasses"></i> Evaluar</a>
+                                    {% endif %}
+                                    {% if registro.estado == 'EN_PROCESO' %}
+                                    <a href="{% url 'taller:finalizar-trabajo' id=registro.id %}" 
+                                    class="btn btn-success btn-sm text-nowrap" 
+                                    role="button"><i class="fa fa-thumbs-up"></i> Finalizar</a>
+                                    {% endif %}
+                                    {% if registro.estado == 'FINALIZADO' and not registro.verificado %}
+                                    <a href="{% url 'taller:verificar-trabajo' id=registro.id %}" 
+                                    class="btn btn-success btn-sm text-nowrap" 
+                                    role="button"><i class="fa fa-calendar-check"></i> Verificar</a>
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -57,9 +80,32 @@
         language: {
             url: "{% static 'datatables/es-MX.json' %}"
         },  
-        buttons: ['copy', 'excel', 'pdf']
+        // buttons: ['copy', 'excel', 'pdf']
+        buttons: [
+            {
+                extend: 'copy',
+                className: 'btn btn-primary',
+                exportOptions: {
+                    columns: ':visible:not(.notexport)'
+                    }
+            },
+            {
+                extend: 'excel',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: ':visible:not(.notexport)'
+                    }
+            },
+            {
+                extend: 'pdf',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: ':visible:not(.notexport)'
+                    }
+            }
+        ]
+
         } 
-    
     );
     
     } );

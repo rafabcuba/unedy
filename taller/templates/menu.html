@@ -19,8 +19,13 @@
                 <i class="fa-solid fa-file-pen"></i> Operaciones
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'taller:create-equipo' %}"><i class="fa fa-file-pen"></i> Agregar equipo</a></li>
+                    <li><a class="dropdown-item" href="{% url 'taller:create-equipo' %}"><i class="fa fa-desktop"></i> Agregar equipo</a></li>
                     <li><a class="dropdown-item" href="{% url 'taller:create-registro' %}"><i class="fa fa-file-pen"></i> Registrar equipo</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'taller:registro-recepcionados' %}"><i class="fa fa-hand-pointer"></i> Asignar trabajo</a></li>
+                    <li><a class="dropdown-item" href="{% url 'taller:registro-asignados' %}"><i class="fa fa-glasses"></i> Evaluar trabajo</a></li>
+                    <li><a class="dropdown-item" href="{% url 'taller:registro-en-proceso' %}"><i class="fa fa-thumbs-up"></i> Finalizar trabajo</a></li>
+                    <li><a class="dropdown-item" href="{% url 'taller:registro-finalizados' %}"><i class="fa fa-calendar-check"></i> Verificar trabajo</a></li>
                 </ul>
             </li>
 
@@ -30,6 +35,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'taller:registro' %}"><i class="fa-solid fa-pencil-alt"></i> Recepciones</a></li>
+                <li><a class="dropdown-item" href="{% url 'taller:equipos-list' %}"><i class="fa-solid fa-list"></i> Listado de equipos</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{% url 'taller:reporte-x-fecha' reporte='registro' %}"><i class="fa-solid fa-file-pdf"></i> Recepciones por fecha</a></li>
                 <li><a class="dropdown-item" href="{% url 'taller:reporte-x-entidad' reporte='registro' %}"><i class="fa-solid fa-file-pdf"></i> Recepciones por entidad</a></li>
