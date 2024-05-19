@@ -1,4 +1,4 @@
-var dom = document.getElementById('container-total-ci');
+var dom = document.getElementById('container-total-registros-x-estado');
 var myChart = echarts.init(dom, null, {
   renderer: 'canvas',
   useDirtyRect: false
@@ -39,21 +39,21 @@ option = {
   },
   yAxis: {
     type: 'category',
-    data: municipios
+    data: estados
   },
   series: [
     {
-      name: 'Total de captaciones',
+      name: 'Registros por estado',
       type: 'bar',
       stack: 'total',
-      color: '#0462a0',
+      color: '#13d45d',
       label: {
         show: true
       },
       emphasis: {
         focus: 'series'
       },
-      data: totalci
+      data: estcount
     }
   ]
 };

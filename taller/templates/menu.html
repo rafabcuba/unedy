@@ -29,11 +29,12 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'taller:registro' %}"><i class="fa-solid fa-pencil-alt"></i> Recepciones</a></li>
-                <li><a class="dropdown-item" href=""><i class="fa-solid fa-file-alt"></i> reporte</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href=""><i class="fa-solid fa-file-pdf"></i> reporte por fecha</a></li>
-                <li><a class="dropdown-item" href=""><i class="fa-solid fa-file-pdf"></i> reporte por cliente</a></li>
-                <li><a class="dropdown-item" href=""><i class="fa-solid fa-file-pdf"></i> reporte por técnico</a></li>
+                <li><a class="dropdown-item" href="{% url 'taller:reporte-x-fecha' reporte='registro' %}"><i class="fa-solid fa-file-pdf"></i> Recepciones por fecha</a></li>
+                <li><a class="dropdown-item" href="{% url 'taller:reporte-x-entidad' reporte='registro' %}"><i class="fa-solid fa-file-pdf"></i> Recepciones por entidad</a></li>
+                <li><a class="dropdown-item" href="{% url 'taller:reporte-x-prioridad' reporte='registro' %}"><i class="fa-solid fa-file-pdf"></i> Recepciones por prioridad</a></li>
+                <li><a class="dropdown-item" href="{% url 'taller:reporte-x-especialista' reporte='registro' %}"><i class="fa-solid fa-file-pdf"></i> Recepciones por especialista</a></li>
+                <li><a class="dropdown-item" href="{% url 'taller:reporte-x-estado' reporte='registro' %}"><i class="fa-solid fa-file-pdf"></i> Recepciones por estado</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href=""><i class="fa-solid fa-chart-pie"></i> Gráficas por fecha</a></li>
                 <li><a class="dropdown-item" href=""><i class="fa-solid fa-chart-pie"></i> Gráficas por cliente</a></li>

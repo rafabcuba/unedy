@@ -1,0 +1,62 @@
+{% extends "frontend.html" %}
+{% block title %}{{title}}{% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+  {{ totalregistros|json_script:'totalregistros' }}
+  {{ entidades|json_script:'entidades' }}
+  {{ estcount|json_script:'estcount' }}
+  {{ estados|json_script:'estados' }}
+  {{ solucionados|json_script:'solucionados' }}
+  {{ no_solucionados|json_script:'no_solucionados' }}
+  {{ total_registros|json_script:'total_registros' }}
+  {{ total_registros_x_mes|json_script:'total_registros_x_mes' }}
+  {{ meses|json_script:'meses' }}
+  <script>
+      const entidades = JSON.parse(document.getElementById('entidades').textContent);
+      const totalregistros = JSON.parse(document.getElementById('totalregistros').textContent);
+      const estados = JSON.parse(document.getElementById('estados').textContent);
+      const estcount = JSON.parse(document.getElementById('estcount').textContent);
+      const solucionados = JSON.parse(document.getElementById('solucionados').textContent);
+      const no_solucionados = JSON.parse(document.getElementById('no_solucionados').textContent);
+      const total_registros = JSON.parse(document.getElementById('total_registros').textContent);
+      const total_registros_x_mes = JSON.parse(document.getElementById('total_registros_x_mes').textContent);
+      const meses = JSON.parse(document.getElementById('meses').textContent);
+  </script>
+        
+  <div class="card">
+    <div class="card-header">
+        {{title}}
+    </div>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col col-md-12 col-lg-6">
+          {% include "graficas/total_x_estado.html" %}
+        </div>
+        <div class="col col-md-12 col-lg-6">
+          {% include "graficas/total_x_entidad.html" %}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-12 col-lg-6">
+          {% include "graficas/eficacia.html" %}
+        </div>
+        <div class="col col-md-12 col-lg-6">
+          {% include "graficas/total_x_mes.html" %}
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col">
+          {% include "graficas/total_x_mes.html" %}
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

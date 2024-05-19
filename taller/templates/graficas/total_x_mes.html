@@ -1,0 +1,13 @@
+{% load static %}
+<div class="container-fluid mt-3">
+    <div class="card" style="height: 30rem;">
+    <div class="card-header">
+        Registros por mes
+    </div>
+        <div class="card-body">
+            <div id="container-total-x-mes" style="height: 100%"></div>
+            <script src="{% static 'echarts/echarts.min.js' %}"></script>
+            <script src="{% static 'echarts/total-x-mes.js' %}"></script>
+        </div>
+    </div>
+</div>

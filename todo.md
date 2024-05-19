@@ -13,5 +13,6 @@ Tareas por hacer
 
 [x] hacer ejemplo de reporte con datatables
 [ ] hacer ejemplo de reporte gráfico
-[ ] poblar la bd para pruebas
+[x] poblar la bd para pruebas
+[ ] configurar Dashboard
 

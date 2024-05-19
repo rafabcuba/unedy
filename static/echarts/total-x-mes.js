@@ -1,10 +1,10 @@
-var chartDom = document.getElementById('container-indisciplinas-x-mes');
+var chartDom = document.getElementById('container-total-x-mes');
 var myChart = echarts.init(chartDom);
 var option;
 
 option = {
   title: {
-    text: 'Total de indisciplinas por mes'
+    text: 'Total de registros por mes'
   },
   tooltip: {
     trigger: 'axis'
@@ -35,9 +35,9 @@ option = {
   },
   series: [
     {
-      name: 'Indisciplinas',
+      name: 'Registros',
       type: 'line',
-      data: indisciplinasm,
+      data: total_registros_x_mes,
       markPoint: {
         data: [
           { type: 'max', name: 'Max' },

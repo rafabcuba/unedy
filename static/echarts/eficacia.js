@@ -1,12 +1,12 @@
-var chartDom = document.getElementById('container-calidad');
+var chartDom = document.getElementById('container-eficacia');
 var myChart = echarts.init(chartDom);
 var colorPalette = ['#91cc75', '#ee6666']
 var option;
 
 option = {
   title: {
-    text: 'Calidad de la información',
-    subtext: 'ONEI',
+    text: 'Eficacia del trabajo',
+    subtext: 'Taller',
     left: 'center'
   },
   tooltip: {
@@ -26,13 +26,13 @@ option = {
   },
   series: [
     {
-      name: 'calidad',
+      name: 'eficacia',
       type: 'pie',
       radius: '70%',
       color: colorPalette,
       data: [
-        { value: entiempoc, name: 'En tiempo' },
-        { value: indisciplinasc, name: 'Indisciplinas' },
+        { value: solucionados, name: 'Solucionados' },
+        { value: no_solucionados, name: 'No Solucionados' },
       ],
       emphasis: {
         itemStyle: {

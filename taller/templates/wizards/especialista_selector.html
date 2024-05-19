@@ -1,0 +1,32 @@
+{% extends "frontend.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center h-100 mt-3">
+  <div class="card">
+    <div class="card-header text-center">
+      <h4>Seleccionar Especialista</h4>
+    </div>
+    <div class="card-body">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group mb-2">
+          <label>especialista</label>
+          <select name="especialista_id" id="especialista_id" class="form-control" required autofocus>
+            <option value="">Seleccionar Especialista</option>
+            {% for especialista in especialista_list %}
+              <option value="{{especialista.id}}">{{especialista.nombre}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+
+        <div class="form-group text-center mt-2">
+          <button type="submit" class="btn btn-primary btn-block">Ok</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
