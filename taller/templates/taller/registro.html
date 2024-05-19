@@ -79,7 +79,8 @@
         buttons: true,
         language: {
             url: "{% static 'datatables/es-MX.json' %}"
-        },  
+        },
+        // columnDefs: [ { type: 'date', "targets": [1] } ],  
         // buttons: ['copy', 'excel', 'pdf']
         buttons: [
             {
@@ -113,3 +114,9 @@
   
 {% endblock %}
 
+
+$(document).ready(function () { 
+    $('#TableName').
+    DataTable(
+        { "columnDefs": [ { type: 'date', "targets": [10, 11,12,13,14,16] } ] }
+        ); });
